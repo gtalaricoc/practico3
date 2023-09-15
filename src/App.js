@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'; 
 //Se hacen las importaciones de los componentes
-import Opcion from './Opcion';
-import OpcionJugador from './OpcionJugador'; //Componente para las jugadas del jugador
-import OpcionPC from './OpcionPC'; //Componente para las jugadas del PC
+import Opcion from './Opcion.js';
+import OpcionJugador from './OpcionJugador.js'; //Componente para las jugadas del jugador
+import OpcionPC from './OpcionPC.js'; //Componente para las jugadas del PC
 import { Resultado, BotonReiniciar } from './Estilos.js'; // Importa los estilos
 import './Estilos.css'; // Importa el archivo CSS de estilos
 import styled from './Estilos.js';
@@ -19,32 +19,31 @@ function App() {
   const [resultado, setResultado] = useState(""); // Estado para mostrar el resultado de la ronda
   const [juegoTerminado, setJuegoTerminado] = useState(false); // Estado para controlar si el juego ha terminado
 
-  const intentosMaximos = 5; // Número de intentos para ganar el juego
-
   const handleChange = (event) => {
     setNombre(event.target.value);
     
   };
 
-  const handleSeleccion = (opcion) => {
+  const handleSeleccion = (Opcion) => {
     if (!juegoTerminado) {
       // Actualiza la opción del jugador
-      setOpcionJugador(opcion);
+      setOpcionJugador(Opcion);
 
       // Genera aleatoriamente la opción del oponente (PC)
       const opcionAleatoriaPC = opciones[Math.floor(Math.random() * opciones.length)];
       setOpcionPC(opcionAleatoriaPC);
 
       // Determina el ganador de la ronda
-      determinarGanador(opcion, opcionAleatoriaPC);
+      determinarGanador(Opcion, opcionAleatoriaPC);
     }
   };
 
   const determinarGanador = (opcionJugador, opcionPC) => {
     if (opcionJugador === opcionPC) {
-      // Empate
       setResultado("Empate");
-    } else if (
+    } 
+    
+    else if (
       (opcionJugador === "piedra" && opcionPC === "tijera") ||
       (opcionJugador === "papel" && opcionPC === "piedra") ||
       (opcionJugador === "tijera" && opcionPC === "papel")
@@ -52,17 +51,19 @@ function App() {
       // Jugador gana
       setResultado("Ganaste");
       setPuntosJugador(puntosJugador + 1);
-    } else {
+    } 
+    
+    else {
       // PC gana
       setResultado("Perdiste");
       setPuntosPC(puntosPC + 1);
     }
 
     // Actualiza los intentos
-    setIntentos(intentos + 1);
+    setIntentos(intentos + 1 <= 3);
 
     // Verifica si el juego ha terminado
-    if (puntosJugador >= 3 || puntosPC >= 3 || intentos >= intentosMaximos) {
+    if (puntosJugador === 3 || puntosPC === 3 ) {
       setJuegoTerminado(true);
     }
   };
@@ -73,20 +74,17 @@ function App() {
     setOpcionPC(null);
     setPuntosJugador(0);
     setPuntosPC(0);
-    setIntentos(0);
     setResultado("");
     setJuegoTerminado(false);
   };
 
   useEffect(() => {
-    if (puntosJugador >= 3) {
+    if (puntosJugador === 3) {
       setResultado(`¡Felicidades, ${nombre}! Ganaste el juego.`);
-    } else if (puntosPC >= 3) {
+    } else if (puntosPC === 3) {
       setResultado("La PC ha ganado el juego.");
-    } else if (intentos >= intentosMaximos) {
-      setResultado("El juego ha terminado en empate.");
-    }
-  }, [puntosJugador, puntosPC, intentos, nombre]);
+    } 
+  }, [puntosJugador, puntosPC, nombre]);
 
    return (
     <div className="App">
