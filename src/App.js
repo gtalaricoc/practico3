@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'; 
-//Se hacen las importaciones de los componentes
-import Opcion from './Opcion.js';
-import OpcionJugador from './OpcionJugador.js'; //Componente para las jugadas del jugador
-import OpcionPC from './OpcionPC.js'; //Componente para las jugadas del PC
+//Se hacen las importaciones de los componentes necesarios para el practico3
+import Opcion from './Opcion';
+import OpcionJugador from './OpcionJugador'; //Componente para las jugadas del jugador
+import OpcionPC from './OpcionPC'; //Componente para las jugadas del PC
 import { Resultado, BotonReiniciar } from './Estilos.js'; // Importa los estilos
 import './Estilos.css'; // Importa el archivo CSS de estilos
 import styled from './Estilos.js';
@@ -10,12 +10,11 @@ import styled from './Estilos.js';
 
 function App() {
   const opciones = ["piedra", "papel", "tijera"];
-  const [nombre, setNombre] = useState(""); // Estado para el nombre del jugador
+  const [nombre, setNombre] = useState(""); // Se coloca el nombre del jugador
   const [opcionJugador, setOpcionJugador] = useState(null); // Estado para la opción del jugador
-  const [opcionPC, setOpcionPC] = useState(null); // Estado para la opción del oponente (PC)
-  const [puntosJugador, setPuntosJugador] = useState(0); // Estado para los puntos del jugador
-  const [puntosPC, setPuntosPC] = useState(0); // Estado para los puntos del PC
-  const [intentos, setIntentos] = useState(0); // Estado para contar los intentos
+  const [opcionPC, setOpcionPC] = useState(null); // Estado para la opción de la computadora (PC)
+  const [puntosJugador, setPuntosJugador] = useState(0); // Visualizar los puntos del jugador desde 0
+  const [puntosPC, setPuntosPC] = useState(0); // Visualizar los puntos del PC desde 0
   const [resultado, setResultado] = useState(""); // Estado para mostrar el resultado de la ronda
   const [juegoTerminado, setJuegoTerminado] = useState(false); // Estado para controlar si el juego ha terminado
 
@@ -29,7 +28,7 @@ function App() {
       // Actualiza la opción del jugador
       setOpcionJugador(Opcion);
 
-      // Genera aleatoriamente la opción del oponente (PC)
+      // Genera aleatoriamente la opción de la computadora (PC)
       const opcionAleatoriaPC = opciones[Math.floor(Math.random() * opciones.length)];
       setOpcionPC(opcionAleatoriaPC);
 
@@ -59,9 +58,6 @@ function App() {
       setPuntosPC(puntosPC + 1);
     }
 
-    // Actualiza los intentos
-    setIntentos(intentos + 1 <= 3);
-
     // Verifica si el juego ha terminado
     if (puntosJugador === 3 || puntosPC === 3 ) {
       setJuegoTerminado(true);
@@ -78,6 +74,8 @@ function App() {
     setJuegoTerminado(false);
   };
 
+  
+
   useEffect(() => {
     if (puntosJugador === 3) {
       setResultado(`¡Felicidades, ${nombre}! Ganaste el juego.`);
@@ -89,13 +87,13 @@ function App() {
    return (
     <div className="App">
       <h1>Juego de Piedra, Papel o Tijera</h1>
-      <form>
+      <div>
         <label>
           Ingresa tu nombre:
           <input type="text" value={nombre} onChange={handleChange} />
         </label>
         <br />
-      </form>
+      </div>
       {!juegoTerminado ? (
         <>
           <h2>{nombre && `Hola, ${nombre}! Elige una opción:`}</h2>
@@ -111,15 +109,15 @@ function App() {
               <h2>Marcador:</h2>
               <p>{nombre}: {puntosJugador} puntos</p>
               <p>PC: {puntosPC} puntos</p>
-              <Resultado>{resultado}</Resultado> {/* Aplica el estilo al mensaje de resultado */}
+              <Resultado>{resultado}</Resultado> {}
             </div>
           )}
         </>
       ) : (
         <div>
           <h2>Fin del juego</h2>
-          <Resultado>{resultado}</Resultado> {/* Aplica el estilo al mensaje de resultado */}
-          <BotonReiniciar onClick={reiniciarJuego}>Reiniciar</BotonReiniciar> {/* Aplica el estilo al botón de reinicio */}
+          <Resultado>{resultado}</Resultado> {}
+          <BotonReiniciar onClick={reiniciarJuego}>Reiniciar</BotonReiniciar> {}
         </div>
       )}
     </div>

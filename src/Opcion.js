@@ -3,7 +3,7 @@ import { BotonOpcion } from './Estilos'; // Importa el estilo
 
 const Opcion = ({ opcion, onClick }) => {
   return (
-    <BotonOpcion onClick={() => onClick(opcion)}> {/* Aplica el estilo al botón */}
+    <BotonOpcion onClick={() => onClick(opcion)}> {}
       {opcion}
     </BotonOpcion>
   );

@@ -21,7 +21,7 @@ const OpcionJugador = ({ opcion, onClick }) => {
 
   return (
     <BotonOpcion onClick={() => onClick(opcion)}>
-      {/* Utiliza la etiqueta <img> con la imagen y aplica el estilo */}
+      {}
       <img src={imagenes[opcion]} alt={opcion} style={estiloImagen} />
     </BotonOpcion>
   );
