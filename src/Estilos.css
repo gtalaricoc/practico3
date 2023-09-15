@@ -1,0 +1,61 @@
+/* Estilos para el contenedor principal */
+.App {
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    background-image: url('../src/images/Piedra\ Papel\ Tijera.png');
+    background-position: center;
+    height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;    
+  }
+
+  h1  {
+    color: rgb(30, 23, 158);
+    text-shadow: 40px;
+  }
+  
+  /* Estilos para los botones */
+  .BotonOpcion {
+    background-color: red; /* Fondo transparente */
+    border: none;
+    cursor: pointer;
+    margin: 10px; /* Espaciado entre los botones */
+    padding: 0;
+  }
+  
+  /* Estilos para las imágenes dentro de los botones */
+  .BotonOpcion img {
+    width: 50px; 
+    height: 50px;
+  }
+  
+  /* Estilos para el texto del nombre del jugador */
+  input[type="text"] {
+    font-size: 20px; /* Tamaño de la fuente del input */
+    padding: 10px;
+    margin: 10px;
+  }
+  
+  /* Estilos para otros elementos, como el mensaje de resultado o el botón de reinicio si es necesario */
+  .Resultado {
+    font-size: 24px;
+    color: #fff; /* Cambia el color de texto según tus preferencias */
+    margin-top: 20px;
+  }
+  
+  .BotonReiniciar {
+    background-color: #4caf50;
+    color: #fff;
+    font-size: 18px;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  
+  .BotonReiniciar:hover {
+    background-color: #2c8831;
+  }
+  

@@ -1,23 +1,129 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react'; 
+//Se hacen las importaciones de los componentes
+import Opcion from './Opcion';
+import OpcionJugador from './OpcionJugador'; //Componente para las jugadas del jugador
+import OpcionPC from './OpcionPC'; //Componente para las jugadas del PC
+import { Resultado, BotonReiniciar } from './Estilos.js'; // Importa los estilos
+import './Estilos.css'; // Importa el archivo CSS de estilos
+import styled from './Estilos.js';
+
 
 function App() {
-  return (
+  const opciones = ["piedra", "papel", "tijera"];
+  const [nombre, setNombre] = useState(""); // Estado para el nombre del jugador
+  const [opcionJugador, setOpcionJugador] = useState(null); // Estado para la opción del jugador
+  const [opcionPC, setOpcionPC] = useState(null); // Estado para la opción del oponente (PC)
+  const [puntosJugador, setPuntosJugador] = useState(0); // Estado para los puntos del jugador
+  const [puntosPC, setPuntosPC] = useState(0); // Estado para los puntos del PC
+  const [intentos, setIntentos] = useState(0); // Estado para contar los intentos
+  const [resultado, setResultado] = useState(""); // Estado para mostrar el resultado de la ronda
+  const [juegoTerminado, setJuegoTerminado] = useState(false); // Estado para controlar si el juego ha terminado
+
+  const intentosMaximos = 5; // Número de intentos para ganar el juego
+
+  const handleChange = (event) => {
+    setNombre(event.target.value);
+    
+  };
+
+  const handleSeleccion = (opcion) => {
+    if (!juegoTerminado) {
+      // Actualiza la opción del jugador
+      setOpcionJugador(opcion);
+
+      // Genera aleatoriamente la opción del oponente (PC)
+      const opcionAleatoriaPC = opciones[Math.floor(Math.random() * opciones.length)];
+      setOpcionPC(opcionAleatoriaPC);
+
+      // Determina el ganador de la ronda
+      determinarGanador(opcion, opcionAleatoriaPC);
+    }
+  };
+
+  const determinarGanador = (opcionJugador, opcionPC) => {
+    if (opcionJugador === opcionPC) {
+      // Empate
+      setResultado("Empate");
+    } else if (
+      (opcionJugador === "piedra" && opcionPC === "tijera") ||
+      (opcionJugador === "papel" && opcionPC === "piedra") ||
+      (opcionJugador === "tijera" && opcionPC === "papel")
+    ) {
+      // Jugador gana
+      setResultado("Ganaste");
+      setPuntosJugador(puntosJugador + 1);
+    } else {
+      // PC gana
+      setResultado("Perdiste");
+      setPuntosPC(puntosPC + 1);
+    }
+
+    // Actualiza los intentos
+    setIntentos(intentos + 1);
+
+    // Verifica si el juego ha terminado
+    if (puntosJugador >= 3 || puntosPC >= 3 || intentos >= intentosMaximos) {
+      setJuegoTerminado(true);
+    }
+  };
+
+  const reiniciarJuego = () => {
+    setNombre("");
+    setOpcionJugador(null);
+    setOpcionPC(null);
+    setPuntosJugador(0);
+    setPuntosPC(0);
+    setIntentos(0);
+    setResultado("");
+    setJuegoTerminado(false);
+  };
+
+  useEffect(() => {
+    if (puntosJugador >= 3) {
+      setResultado(`¡Felicidades, ${nombre}! Ganaste el juego.`);
+    } else if (puntosPC >= 3) {
+      setResultado("La PC ha ganado el juego.");
+    } else if (intentos >= intentosMaximos) {
+      setResultado("El juego ha terminado en empate.");
+    }
+  }, [puntosJugador, puntosPC, intentos, nombre]);
+
+   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Juego de Piedra, Papel o Tijera</h1>
+      <form>
+        <label>
+          Ingresa tu nombre:
+          <input type="text" value={nombre} onChange={handleChange} />
+        </label>
+        <br />
+      </form>
+      {!juegoTerminado ? (
+        <>
+          <h2>{nombre && `Hola, ${nombre}! Elige una opción:`}</h2>
+          <div className="opciones">
+            {opciones.map((opcion) => (
+              <OpcionJugador key={opcion} opcion={opcion} onClick={handleSeleccion} />
+            ))}
+          </div>
+          {opcionJugador && (
+            <div>
+              <h3>Tu elección: {opcionJugador}</h3>
+              <h3>Opción de la PC: {opcionPC}</h3>
+              <h2>Marcador:</h2>
+              <p>{nombre}: {puntosJugador} puntos</p>
+              <p>PC: {puntosPC} puntos</p>
+              <Resultado>{resultado}</Resultado> {/* Aplica el estilo al mensaje de resultado */}
+            </div>
+          )}
+        </>
+      ) : (
+        <div>
+          <h2>Fin del juego</h2>
+          <Resultado>{resultado}</Resultado> {/* Aplica el estilo al mensaje de resultado */}
+          <BotonReiniciar onClick={reiniciarJuego}>Reiniciar</BotonReiniciar> {/* Aplica el estilo al botón de reinicio */}
+        </div>
+      )}
     </div>
   );
 }
