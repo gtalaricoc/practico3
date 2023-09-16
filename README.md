@@ -6,7 +6,7 @@ _Se crea el famoso juego Piedra Papel o Tijera!! con la librería React._
 
 ## Comenzando 🚀
 
-El juego de Piedra, Papel o Tijera que habiamos realizado en el practico2 se va a crear con la librería React.
+El juego de Piedra, Papel o Tijera que habiamos realizado en el practico2 se va a crear con la librería React, se copiaron las mismas imagenes para los botones de opción del Jugador
 
 ### Pre-requisitos 📋
 
@@ -25,40 +25,42 @@ También debemos importar el programa de react por el comando "npx create.react.
 
 ### Desarrollo 🔧
 
-Se crean los componentes necesarios para realizar el juego:
+Se crean los componentes adicionales necesarios para realizar el juego:
 
 OpcionJugador.js aqui el jugador podrá seleccionar su opción de piedra, papel o tijera.
-OpcionPc.js la Pc hace la seleccion de la jugada de piedra, papel o tijera de manera aleatoria o random.
-Opcion.js 
+Estilos.css para dar mejor aspecto al juego.
+Se incorporan las imagenes en carpeta "Images".
+
+En el componente principal en Src llamado App.js se desarrolla todo el código para poder realizar el juego, primero se importan la herramientos principales y componentes que se crearon; luego se crean las constantes que van a ser utilizadas mas abajo en la planilla algunos ligados al UseState, la funcionalidad de javascript y después del return todo el html necesario para dar estructura al juego.
+
+Se tuvo problema cuando al colocar el nombre y luego la tecla Enter se reiniciaba el juego entonces se cambió en html el elemento <form></form> por un <div></div> y se resolvió.
+
+Se creó el componente Estilos.css y Estilos.js para dar mejor aspecto al juego. 
+
+### Aspectos a Mejorar
+
+* Una imagen de fondo que no afecte la visualización de los textos del juego
+* No dejar modificar el nombre una vez empezado el juego
+* Un PopUp al inicio antes de empezar el juego diciendo las instrucciones y poder ingresar el nombre del jugado allí para dar la bienvenida.
+* Un contador mas dinámico y agradable de ver de los puntos del juego.
 
 ## Como operar el Juego Piedra Papel o Tijera📦
 
 Una vez que tengamos el proyecto en código completado procedemos a realizar el Juego:
 
-- En el cuadro se procede a colocar tu nombre y luego se presiona el botón de "Saludar", después se visualiza el mensaje de bienvenida con tu nombre.
-- Se leen las instrucciones.
+- En el cuadro se procede a colocar tu nombre, después se visualiza el mensaje de bienvenida con tu nombre.
 - Tienes 3 botones para escoger: Piedra, Papel o Tijera, se presiona uno de ellos para empezar turno.
 - Se deben ganar 3 partidas para ser el ganador del juego, las jugadas máximas entre jugador y computadora son 5 ya que lo máximo que se verá son 3 y 2 partidas ganadas entre ambos.
 - Debajo de los botones se van a visualizar tanto tu jugada escogida como la jugada de la computadora.
 - Se va a ver el mensaje de quien ganó la jugada o si resultó empate.
-- Automaticamente vas a ver en el marcador la cantidad de puntos entre el Jugador y la Computadora.
-- Una vez al llegar a 3 partidas ganadas por parte del jugador o la computadora se declara al ganador con un mensaje y se desabilita los mensajes de puntos obtenidos.
+- Automaticamente vas a ver la cantidad de puntos de el Jugador y la Computadora.
+- Una vez al llegar a 3 partidas ganadas por parte del jugador o la computadora se declara al ganador con un mensaje.
 - Por último se activa el botón de "Reiniciar" para poder limpiar y empezar el juego otra vez.
 
-## Resumen de desarrollo e incidencias 🛠️
-
-* Html5: se hace básico que contengan todas las etiquetas necesarias, Head, Main, Body. Se había colocado el link de script fuera del body y no corría bien el juego y luego se corrigío y se incluyó dentro ahora funcionando bien. Todos los demás elementos se fueron revisando uno por uno para dar el formato a la página. Se necesitó ayuda en google para poder implementar el ingreso del nombre de la persona que va a jugar. 
-
-* CSS: se revisa la página uno por uno de los elementos y se le configura el estilo detalladamente.
-
-* Javascript: Se procede a elaborar la mayoría de las variables con Let para ya tenerlas configuradas para su uso mas adelante. Se utilza el getElemenByID revisando en Html que esten bien los string que se toman mediando el código "ID". Además se colocan las formulas necesarias y los condicionales con If else para obtener los resultados necesarios. Todos estos explicados en la plantilla de Javascript.
 
 ## Ejecutando las pruebas ⚙️
 
 _Una vez desarrollados los códigos en cada una de las plantillas se detallan algunas pruebas realizadas:_
-
-* Nombre: se coloca el nombre de la persona y al presionar el botón aparece el mensaje de bienvenida "!Hola + El nombre de la persona + Bienvenida".
-No se colocó nombre y se dejó el campo vacío y aparece una ventana diciendo "Por favor, ingrese su nombre" y presionar Aceptar.
 
 * Instrucciones: es un mensaje en H1 estatico que se coloca el color.
 
@@ -73,7 +75,6 @@ No se colocó nombre y se dejó el campo vacío y aparece una ventana diciendo "
 - Jugador: Usaste=> Papel,  Pc usó: Tijera.  Mensaje: Computadora ganó un punto
 - Jugador: Usaste=> Piedra, Pc usó: Tijera.  Mensaje: Ganaste el Juego
 
-* Al ganar el juego se desabilitan el click de los botones de piedra papel o tijera, se ponen invisibles los puntos y se activa el botón de reiniciar, visualizandose el mensaje de Ganaste el Juego o La computadora ganó el Juego. 
 * Una vez terminado se presiona el botón de reiniciar y resetean los valores a 0.
 
 ## Construido con 🛠️
@@ -82,11 +83,11 @@ _Estos son varias páginas web que ayudaron como referencias a construir el proy
 
 * [TutorialMarkdown] https://tutorialmarkdown.com/emojis - Emojis para Markdown.
 * [dofactory] https://www.dofactory.com/css/ - Turoriales, ejemplos y codigos Css.
-* [W3School] https://www.w3schools.com/html/ - tutorial y herramientas Html.
+* [W3School] https://www.w3schools.com/react/default.asp - tutorial y herramientas React.
 
 ## Github 📖
 
-El trabajo se puede visualizar en el repositorio gtalaricoc.github.io/sobre-mi/practico2
+El trabajo se puede visualizar en el repositorio gtalaricoc.github.io/practico3
 
 ## Herramientas de Trabajo 📄
 
@@ -97,6 +98,8 @@ _Se realiza este proyecto con las siguientes herramientas_
 * Gitbash
 * Explorador Chrome
 * Plataforma Windows 11
+* npx create-react-app . (Se necesita instalarlo al principio del proyecto)
+* Node 18.17.1 LTS
 
 ## Expresiones de Gratitud 🎁
 
@@ -106,15 +109,6 @@ _Se realiza este proyecto con las siguientes herramientas_
 ---
 ⌨️ por [gtalaricoc](https://github.com/gtalaricoc) 
 
-
-Primero se hacen todos los pasos para importar el React en el VSCode
-
-
-* Se crean los componentes necesarios para poder realizar el juego
-
-
-* Ingresar imagenes a botones del componente OpcionJugador
-Después de haber creado el componente de OpcionJugador se crea una carpeta en *public* que se llama *imagenes* allí colocamos las imagenes .png que necesitamos de piedra.png, papel.png y tijera.png
 
 
 

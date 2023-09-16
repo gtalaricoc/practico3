@@ -1,8 +1,7 @@
 import styled from 'styled-components';
 
 export const BotonOpcion = styled.button`
-  background-color: #0074d9;
-  color: #fff;
+  background-color: #0070d9;
   font-size: 18px;
   padding: 10px 20px;
   margin: 5px;
@@ -10,14 +9,14 @@ export const BotonOpcion = styled.button`
   cursor: pointer;
   border-radius: 5px;
   &:hover {
-    background-color: #0056b3;
+    background-color: #0046b3;
   }
 `;
 
 export const Resultado = styled.h2`
-  font-size: 24px;
+  font-size: 30px;
   margin-top: 20px;
-  color: #333;
+  color: #8f3d38;
 `;
 
 export const BotonReiniciar = styled.button`

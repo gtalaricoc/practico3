@@ -15,47 +15,18 @@
     text-shadow: 40px;
   }
   
-  /* Estilos para los botones */
-  .BotonOpcion {
-    background-color: red; /* Fondo transparente */
-    border: none;
-    cursor: pointer;
-    margin: 10px; /* Espaciado entre los botones */
-    padding: 0;
-  }
-  
-  /* Estilos para las imágenes dentro de los botones */
-  .BotonOpcion img {
-    width: 50px; 
-    height: 50px;
-  }
-  
   /* Estilos para el texto del nombre del jugador */
   input[type="text"] {
-    font-size: 20px; /* Tamaño de la fuente del input */
+    font-size: 18px; 
     padding: 10px;
     margin: 10px;
+    font-style: italic;
   }
-  
-  /* Estilos para otros elementos, como el mensaje de resultado o el botón de reinicio si es necesario */
-  .Resultado {
-    font-size: 24px;
-    color: #fff; /* Cambia el color de texto según tus preferencias */
-    margin-top: 20px;
-  }
-  
-  .BotonReiniciar {
-    background-color: #4caf50;
-    color: #fff;
-    font-size: 18px;
-    padding: 10px 20px;
-    margin-top: 20px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  .BotonReiniciar:hover {
-    background-color: #2c8831;
-  }
+
+h3 {
+  color: darkgreen;
+  font-style: italic;
+  font-weight: 1000;
+}
+
   

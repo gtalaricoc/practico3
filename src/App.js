@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'; 
 //Se hacen las importaciones de los componentes necesarios para el practico3
-import Opcion from './Opcion';
 import OpcionJugador from './OpcionJugador'; //Componente para las jugadas del jugador
-import OpcionPC from './OpcionPC'; //Componente para las jugadas del PC
 import { Resultado, BotonReiniciar } from './Estilos.js'; // Importa los estilos
 import './Estilos.css'; // Importa el archivo CSS de estilos
 import styled from './Estilos.js';
@@ -64,6 +62,7 @@ function App() {
     }
   };
 
+  // Se crea una constante para que los valores queden en 0 cuando se reinicie el juego  
   const reiniciarJuego = () => {
     setNombre("");
     setOpcionJugador(null);
